@@ -25,6 +25,7 @@ class HerMessageBubble extends StatelessWidget{
         const SizedBox(height:5),
 
         _ImageBubble(),
+        const SizedBox(height:10),
 
         // Todo: imagen
       ],
@@ -36,6 +37,26 @@ class _ImageBubble extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Image.network('https://yesno.wtf/assets/no/5-73e4adfe4da265a646fe517128bb5bf2.gif');
+    final size = MediaQuery.of(context).size;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Image.network(
+        'https://yesno.wtf/assets/no/5-73e4adfe4da265a646fe517128bb5bf2.gif',
+        width: size.width *0.7,
+        height: 150,
+        fit: BoxFit.cover,
+        loadingBuilder: (context, child, loadingProgress){
+          if(loadingProgress== null) return child;
+          
+          return Container(
+            width: size.width *0.7,
+            height: 150,
+            padding: const EdgeInsets.symmetric( horizontal: 10, vertical: 5),
+            child: const Text('Alexa esta mandando una imagen.')
+          );
+
+
+        } ,
+        ));
   }
 }

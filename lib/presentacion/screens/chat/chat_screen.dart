@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mensajes_app/presentacion/widgets/chat/her_message_bubble.dart';
 import 'package:mensajes_app/presentacion/widgets/chat/my_message_bubble.dart';
+import 'package:mensajes_app/presentacion/widgets/shared/message_field_box.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -9,6 +10,7 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         leading: const Padding(
           padding: EdgeInsets.all(4.0),
           child: CircleAvatar(
@@ -16,6 +18,7 @@ class ChatScreen extends StatelessWidget {
           ),
         ),
         title: const Text("Alexa"),
+        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20,),
         centerTitle: true,
       ),
 
@@ -40,8 +43,11 @@ class _ChatView extends StatelessWidget {
                 return (index %2==0)
                 ? const HerMessageBubble()
                 :const MyMessageBubble();
-              },) 
-            )],
+              })),
+
+              /// Caja de texto de mensajes
+              const MessageFieldBox(),
+            ],
           ),
       ),
     );
